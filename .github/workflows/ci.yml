@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker images
+        run: docker compose build
+
+      - name: Start containers
+        run: docker compose up -d
+
+      - name: Wait for Postgres
+        run: |
+          until docker exec song-vault-db pg_isready -U postgres; do
+            echo "Waiting for postgres..."
+            sleep 2
+          done
+
+      - name: Show logs on failure
+        if: failure()
+        run: docker compose logs
+
+      - name: Shutdown
+        if: always()
+        run: docker compose down -v
