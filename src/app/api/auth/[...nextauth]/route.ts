@@ -1,6 +1,8 @@
 import NextAuth, { AuthOptions } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 
+// todo: try the @beta version of next-auth for better app component integration
+
 export const authOptions: AuthOptions = {
   providers: [
     SpotifyProvider({
