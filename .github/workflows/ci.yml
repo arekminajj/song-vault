@@ -17,6 +17,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Write Cloudflare tunnel credentials
+        run: |
+          mkdir -p ./cloudflare_config
+          echo "${{ secrets.CF_TUNNEL_SECRET }}" > ./cloudflare_config/${{secrets.CF_TUNNEL_UUID}}.json
+          echo "${{ secrets.CF_TUNNEL_CONFIG }}" > ./cloudflare_config/config.yml
+
       - name: Build Docker images
         run: docker compose build
 
