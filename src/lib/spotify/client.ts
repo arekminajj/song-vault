@@ -7,7 +7,7 @@ export function getSpotifyClient() {
   if (!client) {
     client = SpotifyApi.withClientCredentials(
       process.env.AUTH_SPOTIFY_ID!,
-      process.env.AUTH_SPOTIFY_SECRET!
+      process.env.AUTH_SPOTIFY_SECRET!,
     );
   }
   return client;
