@@ -17,8 +17,8 @@ export function RangeToggle({ currentRange }: { currentRange: string }) {
           key={opt.value}
           onClick={() => router.push(`?range=${opt.value}`)}
           className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
-            currentRange === opt.value 
-              ? "bg-[#1DB954] text-black" 
+            currentRange === opt.value
+              ? "bg-[#1DB954] text-black"
               : "text-gray-400 hover:text-white"
           }`}
         >

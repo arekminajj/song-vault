@@ -13,7 +13,7 @@ export async function searchTracks(query: string, offset: number | undefined) {
     ["track"],
     "US",
     50,
-    offset
+    offset,
   );
   return res.tracks.items;
 }
@@ -26,7 +26,7 @@ export async function searchAlbums(query: string, offset: number | undefined) {
     ["album"],
     "US",
     50,
-    offset
+    offset,
   );
   return res.albums.items;
 }
@@ -39,14 +39,14 @@ export async function searchArtists(query: string, offset: number | undefined) {
     ["artist"],
     "US",
     50,
-    offset
+    offset,
   );
   return res.artists.items;
 }
 
 export async function searchAll(
   query: string,
-  offset: number | undefined
+  offset: number | undefined,
 ): Promise<SearchResultItem[]> {
   if (!query.trim()) return [];
 
@@ -55,7 +55,7 @@ export async function searchAll(
     ["album", "artist", "track"],
     "US",
     50,
-    offset
+    offset,
   );
 
   const items = [
@@ -79,16 +79,19 @@ export async function getArtist(id: string) {
   return await getSpotifyClient().artists.get(id);
 }
 
-export async function getUserListeningStats(token: string, timestamp: "short_term" | "medium_term" | "long_term") {
+export async function getUserListeningStats(
+  token: string,
+  timestamp: "short_term" | "medium_term" | "long_term",
+) {
   const sdk = getUserSpotifyClient(token);
-  
+
   const [tracks, artists] = await Promise.all([
     sdk.currentUser.topItems("tracks", timestamp, 10),
     sdk.currentUser.topItems("artists", timestamp, 10),
   ]);
 
-  return { 
-    tracks: tracks.items, 
-    artists: artists.items 
+  return {
+    tracks: tracks.items,
+    artists: artists.items,
   };
 }
