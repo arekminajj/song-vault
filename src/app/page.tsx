@@ -1,21 +1,16 @@
-'use client';
+'use server';
 
-import { useSession } from "next-auth/react";
+import { auth } from "@/auth";
 
-export default function Home() {
-  const { data: session, status } = useSession();
+export default async function Home() {
+  const session = await auth();
 
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
 
-  if (!session) {
-    return <div>Please sign in to view your Spotify data.</div>;
-  }
-
-  const user = session.user;
+  const user = session?.user
 
   return (
-    <p>hello {session.user.email}</p>
+    <div>
+   {session ? (<p>Hello {user?.name}</p>) : (<p>Sign in to see your name</p>)}
+    </div>
   );
 }
