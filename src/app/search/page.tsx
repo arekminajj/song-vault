@@ -1,0 +1,14 @@
+import { searchAll } from "@/lib/spotify/spotify";
+
+interface Props {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}
+
+export default async function SearchPage({ searchParams }: Props) {
+  const filters = await searchParams;
+  const query = filters.query ?? "";
+
+  const serachResults = await searchAll(query, 0);
+
+  return <div>{serachResults[0].name}</div>;
+}

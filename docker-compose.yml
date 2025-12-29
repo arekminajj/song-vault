@@ -1,30 +1,48 @@
 services:
   next:
+    restart: unless-stopped
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: song-vault-next
+      dockerfile: Dockerfiles/next-dev.dockerfile
+    container_name: song-vault-next-dev
     depends_on:
       - db
-    ports:
-      - 3000:3000
+    expose:
+      - "3000"
+    env_file:
+      - .env.local
+    networks:
+      - song-vault-net
+    volumes:
+      - .:/app
+      - /src/app/node_modules
+
+  cloudflared:
+    container_name: song-vault-cloudflared
+    build:
+      context: .
+      dockerfile: Dockerfiles/cloudflared.dockerfile
+    depends_on:
+      - next
+    restart: unless-stopped
     networks:
       - song-vault-net
     
   db:
     image: postgres:16
     container_name: song-vault-db
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: song-vault
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     networks:
       - song-vault-net
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: song-vault-pgadmin
@@ -32,7 +50,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.admin
       - PGADMIN_DEFAULT_PASSWORD=admin
     ports:
-      - 5050:80
+      - "127.0.0.1:5050:80"
     networks:
       - song-vault-net
 
@@ -41,3 +59,4 @@ volumes:
 
 networks:
   song-vault-net:
+    driver: bridge
