@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Song-Vault
+Music explore and review app.
 
-## Getting Started
+## Development setup
 
-First, run the development server:
+Follow these steps to run the project with Docker and Cloudflare Tunnel.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. create `.env` file in the project root with secrets:
+
+```
+AUTH_SPOTIFY_ID=<your-spotify-app-id>
+AUTH_SPOTIFY_SECRET=<your-spotify-app-secret>
+AUTH_URL=<your-cloudflare-domain>
+AUTH_TRUST_HOST=true
+NEXTAUTH_SECRET=<auth-secret>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- AUTH_SPOTIFY_ID and AUTH_SPOTIFY_SECRET can be obtained from [Spotify developer page](https://developer.spotify.com/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- AUTH_URL is the URL of tunneled app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `NEXTAUTH_SECRET` is used for securing JWT tokens in authentication. You can generate a random secret using:
 
-## Learn More
+    ```bash
+    openssl rand -base64 32
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Setup Cloudflare tunnel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create config directory
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+mkdir cloudflare_config
+```
 
-## Deploy on Vercel
+add your `<UUID>.json` that can be obtained from [Cloudflare dashboard](https://dash.cloudflare.com) or with:
+```bash
+cloudflared tunnel create <domain-name>
+```
+and `config.yml` file:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+tunnel: <tunnel-uuid>
+credentials-file: /etc/cloudflared/<tunnel-uuid>.json
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ingress:
+  - hostname: <domain-name>
+    service: http://next:3000
+  - service: http_status:404
+```
+
+4. Run docker compose
+
+```
+docker compose up  --build
+```
