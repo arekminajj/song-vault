@@ -1,0 +1,7 @@
+.github/
+node_modules/
+dist/
+build/
+cloudflare_config/
+Dockerfiles/
+.env.local
