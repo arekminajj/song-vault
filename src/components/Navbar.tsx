@@ -25,7 +25,7 @@ export default async function Navbar() {
               Explore
             </Link>
             <Link
-              href="/top"
+              href="/stats"
               className="text-gray-300 hover:text-white transition"
             >
               Listening stats
