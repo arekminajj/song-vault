@@ -23,6 +23,16 @@ jobs:
           echo "${{ secrets.CF_TUNNEL_SECRET }}" > ./cloudflare_config/${{secrets.CF_TUNNEL_UUID}}.json
           echo "${{ secrets.CF_TUNNEL_CONFIG }}" > ./cloudflare_config/config.yml
 
+      - name: Write env file
+        run: |
+          cat <<EOF > .env.local
+          SPOTIFY_CLIENT_ID=${{ secrets.AUTH_SPOTIFY_ID }}
+          SPOTIFY_CLIENT_SECRET=${{ secrets.AUTH_SPOTIFY_SECRET }}
+          NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
+          AUTH_TRUST_HOST=true
+          NEXTAUTH_URL=${{secrets.AUTH_URL}}
+          EOF
+
       - name: Build Docker images
         run: docker compose build
 
