@@ -2,7 +2,7 @@ import { Artist, SimplifiedAlbum, Track } from "@spotify/web-api-ts-sdk";
 
 type SearchResultItem = Track | SimplifiedAlbum | Artist;
 
-export function rankSearchResults(items: SearchResultItem[], query: string ) {
+export function rankSearchResults(items: SearchResultItem[], query: string) {
   const lowerQuery = query.toLowerCase();
 
   return items.sort((a, b) => {
