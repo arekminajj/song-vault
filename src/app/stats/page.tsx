@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { getUserListeningStats } from "@/lib/spotify/spotify";
+import { getUserListeningStats } from "@/lib/spotify/stats";
 import { RangeToggle } from "@/components/stats/RangeToggle";
 
 export default async function StatsPage({
