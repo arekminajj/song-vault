@@ -13,7 +13,7 @@ import { PlaybackState, Track, Episode } from "@spotify/web-api-ts-sdk";
 
 export default function WebPlayer({ session }: { session: Session }) {
   const [playbackState, setPlaybackState] = useState<PlaybackState | null>(
-    null
+    null,
   );
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const token = session.accessToken;

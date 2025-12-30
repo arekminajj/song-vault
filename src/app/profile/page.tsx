@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import WebPlayer from "@/components/WebPlayer";
 
 export default async function ProfilePage() {
-  const session = await auth()
+  const session = await auth();
 
   if (!session)
     return <div className="p-8 text-center text-gray-400">Login required</div>;

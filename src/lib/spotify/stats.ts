@@ -2,7 +2,7 @@ import { getUserSpotifyClient } from "./userClient";
 
 export async function getUserListeningStats(
   token: string,
-  timestamp: "short_term" | "medium_term" | "long_term"
+  timestamp: "short_term" | "medium_term" | "long_term",
 ) {
   const client = getUserSpotifyClient(token);
 
