@@ -85,7 +85,7 @@ export async function getFeaturedPlaylists() {
   return client.browse.getFeaturedPlaylists();
 }
 
-export async function getFeatured() {
+export async function getNewReleases() {
   const client = await getSpotifyClient();
 
   return client.browse.getNewReleases();
