@@ -21,9 +21,11 @@ export function StarRating({ value, onChange }: StarRatingProps) {
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(null)}
           >
-            <StarIcon 
-              filled={star <= (hover ?? value)} 
-              className={star <= (hover ?? value) ? "text-yellow-400" : "text-gray-600"}
+            <StarIcon
+              filled={star <= (hover ?? value)}
+              className={
+                star <= (hover ?? value) ? "text-yellow-400" : "text-gray-600"
+              }
             />
           </button>
         ))}
@@ -32,7 +34,13 @@ export function StarRating({ value, onChange }: StarRatingProps) {
   );
 }
 
-function StarIcon({ filled, className }: { filled: boolean; className: string }) {
+function StarIcon({
+  filled,
+  className,
+}: {
+  filled: boolean;
+  className: string;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

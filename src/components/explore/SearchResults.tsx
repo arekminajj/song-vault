@@ -42,31 +42,31 @@ export default function SearchResults({
         ) : (
           results.map((item) => (
             <a href={item.type === "track" ? `/track/${item.id}` : ""}>
-            <div
-              key={item.id}
-              className="group cursor-pointer space-y-3 transition-transform hover:scale-105"
-            >
-              <div className="aspect-square overflow-hidden rounded-xl bg-white/5 shadow-lg transition group-hover:bg-white/10">
-                <img
-                  src={getImageUrl(item) || "/No-Image-Placeholder.svg"}
-                  alt={item.name}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
+              <div
+                key={item.id}
+                className="group cursor-pointer space-y-3 transition-transform hover:scale-105"
+              >
+                <div className="aspect-square overflow-hidden rounded-xl bg-white/5 shadow-lg transition group-hover:bg-white/10">
+                  <img
+                    src={getImageUrl(item) || "/No-Image-Placeholder.svg"}
+                    alt={item.name}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
 
-              <div className="space-y-1">
-                <p className="font-medium text-white truncate">{item.name}</p>
-                <p className="text-sm text-gray-400 capitalize">
-                  {getItemType(item)}
-                  {"artists" in item && item.artists && (
-                    <span className="block text-xs text-gray-500 truncate">
-                      {item.artists.map((a) => a.name).join(", ")}
-                    </span>
-                  )}
-                </p>
+                <div className="space-y-1">
+                  <p className="font-medium text-white truncate">{item.name}</p>
+                  <p className="text-sm text-gray-400 capitalize">
+                    {getItemType(item)}
+                    {"artists" in item && item.artists && (
+                      <span className="block text-xs text-gray-500 truncate">
+                        {item.artists.map((a) => a.name).join(", ")}
+                      </span>
+                    )}
+                  </p>
+                </div>
               </div>
-            </div>
             </a>
           ))
         )}

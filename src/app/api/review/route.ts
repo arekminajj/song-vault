@@ -4,7 +4,8 @@ import { createReview } from "@/repositories/review.repository";
 
 export async function POST(req: Request) {
   const session = await auth();
-  if (!session?.user?.id) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!session?.user?.id)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
     const body = await req.json();
@@ -12,9 +13,12 @@ export async function POST(req: Request) {
       ...body,
       userId: session.user.id,
     });
-    
+
     return NextResponse.json(review);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to create review" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to create review" },
+      { status: 500 },
+    );
   }
 }

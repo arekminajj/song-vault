@@ -30,7 +30,10 @@ export function ReviewForm({ mediaId }: { mediaId: string }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-gray-900/50 p-6 rounded-xl border border-gray-800">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6 bg-gray-900/50 p-6 rounded-xl border border-gray-800"
+    >
       <div>
         <label className="block text-sm font-medium mb-2">Rating</label>
         <StarRating value={starsNum} onChange={setStarsNum} />
