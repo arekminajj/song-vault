@@ -67,7 +67,7 @@ export async function searchAll(
   return rankSearchResults(items, query);
 }
 
-export async function getTract(id: string) {
+export async function getTrack(id: string) {
   return await getSpotifyClient().tracks.get(id);
 }
 
