@@ -11,6 +11,8 @@ services:
       - "3000"
     env_file:
       - .env.local
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/song-vault
     networks:
       - song-vault-net
     volumes:
@@ -53,6 +55,8 @@ services:
       - "127.0.0.1:5050:80"
     networks:
       - song-vault-net
+    depends_on:
+      - db
 
 volumes:
   postgres_data:

@@ -14,6 +14,10 @@ RUN \
 COPY . .
 
 ENV NODE_ENV=development
+
+# generate prisma client
+RUN npx prisma generate
+
 EXPOSE 3000
 
 CMD ["npm", "run", "dev"]

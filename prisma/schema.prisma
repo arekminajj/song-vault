@@ -1,0 +1,19 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Review {
+  id    Int     @id @default(autoincrement())
+  userId String
+  mediaId String
+  content  String?
+  starsNum Int //0 to 5
+  createdAt DateTime
+}
+  

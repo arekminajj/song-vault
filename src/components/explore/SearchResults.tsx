@@ -41,6 +41,7 @@ export default function SearchResults({
           </p>
         ) : (
           results.map((item) => (
+            <a href={item.type === "track" ? `/track/${item.id}` : ""}>
             <div
               key={item.id}
               className="group cursor-pointer space-y-3 transition-transform hover:scale-105"
@@ -66,6 +67,7 @@ export default function SearchResults({
                 </p>
               </div>
             </div>
+            </a>
           ))
         )}
       </div>

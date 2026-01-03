@@ -42,3 +42,5 @@ next-env.d.ts
 
 #cloudflare configs
 /cloudflare_config
+
+/src/app/generated/prisma
