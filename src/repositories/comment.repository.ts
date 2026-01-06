@@ -5,11 +5,7 @@ import {
   CreateCommentInput,
 } from "../validation/comment.schema";
 
-export async function getComments(
-  mediaId: string,
-  limit = 20,
-  offset = 0
-) {
+export async function getComments(mediaId: string, limit = 20, offset = 0) {
   return prisma.comment.findMany({
     where: { mediaId },
     orderBy: { createdAt: "desc" },
