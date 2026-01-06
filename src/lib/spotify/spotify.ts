@@ -80,13 +80,13 @@ export async function getArtist(id: string) {
 }
 
 export async function getFeaturedPlaylists() {
-  const client = await getSpotifyClient();
+  const client = getSpotifyClient();
 
-  return client.browse.getFeaturedPlaylists();
+  return await client.browse.getFeaturedPlaylists();
 }
 
 export async function getNewReleases() {
-  const client = await getSpotifyClient();
+  const client = getSpotifyClient();
 
-  return client.browse.getNewReleases();
+  return await client.browse.getNewReleases();
 }
