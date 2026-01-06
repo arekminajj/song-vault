@@ -27,12 +27,13 @@ export default async function Page() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
-              SoundVault <span className="text-green-400">dla</span> muzyki, którą kochasz.
+              SoundVault <span className="text-green-400">dla</span> muzyki,
+              którą kochasz.
             </h1>
 
             <p className="text-gray-300 max-w-xl leading-relaxed">
-              Wyszukuj utwory, albumy i artystów przez Spotify, zapisuj wrażenia,
-              oceniaj w skali 1–5 i buduj swój profil recenzenta.
+              Wyszukuj utwory, albumy i artystów przez Spotify, zapisuj
+              wrażenia, oceniaj w skali 1–5 i buduj swój profil recenzenta.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -69,10 +70,18 @@ export default async function Page() {
             </div>
 
             <div className="flex flex-wrap gap-3 text-xs text-gray-400">
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">🔎 Szybkie wyszukiwanie</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">⭐ Oceny 1–5</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">📈 Listening stats</span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">💬 Społeczność</span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                🔎 Szybkie wyszukiwanie
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                ⭐ Oceny 1–5
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                📈 Listening stats
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                💬 Społeczność
+              </span>
             </div>
           </div>
 
@@ -82,14 +91,20 @@ export default async function Page() {
               <>
                 <div className="flex items-center gap-3">
                   {user?.image ? (
-                    <img src={user.image} alt="Profile" className="h-10 w-10 rounded-full object-cover" />
+                    <img
+                      src={user.image}
+                      alt="Profile"
+                      className="h-10 w-10 rounded-full object-cover"
+                    />
                   ) : (
                     <div className="h-10 w-10 rounded-full bg-white/10" />
                   )}
 
                   <div className="min-w-0">
                     <p className="text-sm text-gray-400">Zalogowano jako</p>
-                    <p className="font-semibold truncate">{user?.name ?? "Użytkownik"}</p>
+                    <p className="font-semibold truncate">
+                      {user?.name ?? "Użytkownik"}
+                    </p>
                   </div>
                 </div>
 
@@ -99,7 +114,9 @@ export default async function Page() {
                     className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 hover:bg-white/[0.06] transition"
                   >
                     <p className="text-sm font-semibold">Profil</p>
-                    <p className="mt-1 text-xs text-gray-400">Recenzje, ulubione</p>
+                    <p className="mt-1 text-xs text-gray-400">
+                      Recenzje, ulubione
+                    </p>
                   </Link>
 
                   <Link
@@ -107,7 +124,9 @@ export default async function Page() {
                     className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 hover:bg-white/[0.06] transition"
                   >
                     <p className="text-sm font-semibold">Explore</p>
-                    <p className="mt-1 text-xs text-gray-400">Wyszukuj muzykę</p>
+                    <p className="mt-1 text-xs text-gray-400">
+                      Wyszukuj muzykę
+                    </p>
                   </Link>
                 </div>
 
@@ -116,18 +135,28 @@ export default async function Page() {
                 </div>
 
                 <p className="text-xs text-gray-500">
-                  Tip: odpal coś na Spotify (telefon/desktop), a player pokaże co leci.
+                  Tip: odpal coś na Spotify (telefon/desktop), a player pokaże
+                  co leci.
                 </p>
               </>
             ) : (
               <>
                 <p className="text-sm text-gray-300">
-                  Zaloguj się, żeby zobaczyć player, statystyki i swój profil recenzji.
+                  Zaloguj się, żeby zobaczyć player, statystyki i swój profil
+                  recenzji.
                 </p>
 
                 <div className="grid gap-3">
-                  <StatCard title="Explore" value="Spotify Search" hint="utwory • albumy • artyści" />
-                  <StatCard title="Reviews" value="1–5 ⭐" hint="pisz recenzje i oceniaj" />
+                  <StatCard
+                    title="Explore"
+                    value="Spotify Search"
+                    hint="utwory • albumy • artyści"
+                  />
+                  <StatCard
+                    title="Reviews"
+                    value="1–5 ⭐"
+                    hint="pisz recenzje i oceniaj"
+                  />
                 </div>
               </>
             )}
@@ -136,17 +165,32 @@ export default async function Page() {
 
         {/* STATS */}
         <section className="mt-10 grid gap-4 sm:grid-cols-3">
-          <StatCard title="Szybkość" value="Instant search" hint="wyniki od razu w Explore" />
-          <StatCard title="Twoja historia" value="Profil recenzji" hint="zapisuj ulubione albumy" />
-          <StatCard title="Statystyki" value="Top Artists/Tracks" hint="różne zakresy czasu" />
+          <StatCard
+            title="Szybkość"
+            value="Instant search"
+            hint="wyniki od razu w Explore"
+          />
+          <StatCard
+            title="Twoja historia"
+            value="Profil recenzji"
+            hint="zapisuj ulubione albumy"
+          />
+          <StatCard
+            title="Statystyki"
+            value="Top Artists/Tracks"
+            hint="różne zakresy czasu"
+          />
         </section>
 
         {/* FEATURES */}
         <section className="mt-10">
-          <h2 className="text-xl font-semibold text-white">Co tu fajnego zrobimy</h2>
+          <h2 className="text-xl font-semibold text-white">
+            Co tu fajnego zrobimy
+          </h2>
           <p className="mt-2 text-sm text-gray-400 max-w-2xl">
-            Strona główna ma wyglądać jak nowoczesny produkt: jasny przekaz + konkretne moduły,
-            a po zalogowaniu — szybkie wejścia do najważniejszych sekcji.
+            Strona główna ma wyglądać jak nowoczesny produkt: jasny przekaz +
+            konkretne moduły, a po zalogowaniu — szybkie wejścia do
+            najważniejszych sekcji.
           </p>
 
           <div className="mt-5 grid gap-4 md:grid-cols-3">
@@ -169,9 +213,15 @@ export default async function Page() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p>© {new Date().getFullYear()} SoundVault</p>
             <div className="flex gap-4">
-              <Link className="hover:text-gray-300 transition" href="/explore">Explore</Link>
-              <Link className="hover:text-gray-300 transition" href="/stats">Stats</Link>
-              <Link className="hover:text-gray-300 transition" href="/profile">Profile</Link>
+              <Link className="hover:text-gray-300 transition" href="/explore">
+                Explore
+              </Link>
+              <Link className="hover:text-gray-300 transition" href="/stats">
+                Stats
+              </Link>
+              <Link className="hover:text-gray-300 transition" href="/profile">
+                Profile
+              </Link>
             </div>
           </div>
         </footer>
