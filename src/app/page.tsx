@@ -125,7 +125,9 @@ export default async function Page() {
                     className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 hover:bg-white/[0.06] transition"
                   >
                     <p className="text-sm font-semibold">Explore</p>
-                    <p className="mt-1 text-xs text-gray-400">Search music</p>
+                    <p className="mt-1 text-xs text-gray-400">
+                      Search music
+                    </p>
                   </Link>
                 </div>
 
