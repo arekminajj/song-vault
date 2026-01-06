@@ -1,6 +1,9 @@
 import "server-only";
 import prisma from "@/lib/prisma";
-import { CreateReviewSchema, CreateReviewInput } from "../validation/review.schema";
+import {
+  CreateReviewSchema,
+  CreateReviewInput,
+} from "../validation/review.schema";
 
 export async function getAllReviews() {
   return await prisma.review.findMany({});
