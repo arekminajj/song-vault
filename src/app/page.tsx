@@ -4,6 +4,7 @@ import WebPlayer from "@/components/WebPlayer";
 import SignIn from "@/components/Signin";
 import StatCard from "@/components/homepage/StatCard";
 import FeatureCard from "@/components/homepage/FeatureCard";
+import Icon from "@/components/Icon";
 
 export default async function Page() {
   const session = await auth();
@@ -11,29 +12,27 @@ export default async function Page() {
 
   return (
     <main className="relative min-h-[calc(100vh-56px)] bg-gray-950 text-white overflow-hidden">
-      {/* tło / glowy */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-green-500/15 blur-3xl" />
         <div className="absolute top-48 left-1/3 h-[260px] w-[520px] rounded-full bg-indigo-500/10 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">
-        {/* HERO */}
         <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300">
-              <span className="h-2 w-2 rounded-full bg-green-400" />
-              Spotify search + recenzje + statystyki
+              <Icon name="search" className="h-4 w-4 text-green-400" />
+              Spotify search, reviews and stats
             </div>
 
             <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
-              SoundVault <span className="text-green-400">dla</span> muzyki,
-              którą kochasz.
+              SoundVault <span className="text-green-400">for</span> music you
+              love.
             </h1>
 
             <p className="text-gray-300 max-w-xl leading-relaxed">
-              Wyszukuj utwory, albumy i artystów przez Spotify, zapisuj
-              wrażenia, oceniaj w skali 1–5 i buduj swój profil recenzenta.
+              Search tracks, albums and artists using Spotify, save your
+              impressions, rate from 1 to 5 and build your reviewer profile.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -43,18 +42,17 @@ export default async function Page() {
                     href="/explore"
                     className="rounded-full bg-green-500 px-5 py-2.5 text-sm font-semibold text-black hover:bg-green-400 transition"
                   >
-                    Przejdź do Explore
+                    Go to Explore
                   </Link>
                   <Link
                     href="/stats"
                     className="rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/[0.06] transition"
                   >
-                    Zobacz statystyki
+                    View stats
                   </Link>
                 </>
               ) : (
                 <>
-                  {/* SignIn ma swój button w środku, więc opakowanie traktuj jako “badge” */}
                   <div className="rounded-full bg-green-500 px-4 py-2 text-sm font-semibold text-black hover:opacity-95 transition">
                     <SignIn />
                   </div>
@@ -63,29 +61,32 @@ export default async function Page() {
                     href="/explore"
                     className="rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/[0.06] transition"
                   >
-                    Zobacz jak to działa
+                    See how it works
                   </Link>
                 </>
               )}
             </div>
 
             <div className="flex flex-wrap gap-3 text-xs text-gray-400">
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                🔎 Szybkie wyszukiwanie
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                <Icon name="search" className="h-4 w-4 text-gray-300" />
+                Fast search
               </span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                ⭐ Oceny 1–5
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                <Icon name="star" className="h-4 w-4 text-gray-300" />
+                Ratings 1–5
               </span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                📈 Listening stats
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                <Icon name="insights" className="h-4 w-4 text-gray-300" />
+                Listening stats
               </span>
-              <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
-                💬 Społeczność
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
+                <Icon name="forum" className="h-4 w-4 text-gray-300" />
+                Community
               </span>
             </div>
           </div>
 
-          {/* RIGHT PANEL */}
           <div className="space-y-4 rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
             {session ? (
               <>
@@ -101,9 +102,9 @@ export default async function Page() {
                   )}
 
                   <div className="min-w-0">
-                    <p className="text-sm text-gray-400">Zalogowano jako</p>
+                    <p className="text-sm text-gray-400">Signed in as</p>
                     <p className="font-semibold truncate">
-                      {user?.name ?? "Użytkownik"}
+                      {user?.name ?? "User"}
                     </p>
                   </div>
                 </div>
@@ -113,9 +114,9 @@ export default async function Page() {
                     href="/profile"
                     className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 hover:bg-white/[0.06] transition"
                   >
-                    <p className="text-sm font-semibold">Profil</p>
+                    <p className="text-sm font-semibold">Profile</p>
                     <p className="mt-1 text-xs text-gray-400">
-                      Recenzje, ulubione
+                      Reviews and favorites
                     </p>
                   </Link>
 
@@ -124,9 +125,7 @@ export default async function Page() {
                     className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 hover:bg-white/[0.06] transition"
                   >
                     <p className="text-sm font-semibold">Explore</p>
-                    <p className="mt-1 text-xs text-gray-400">
-                      Wyszukuj muzykę
-                    </p>
+                    <p className="mt-1 text-xs text-gray-400">Search music</p>
                   </Link>
                 </div>
 
@@ -135,27 +134,26 @@ export default async function Page() {
                 </div>
 
                 <p className="text-xs text-gray-500">
-                  Tip: odpal coś na Spotify (telefon/desktop), a player pokaże
-                  co leci.
+                  Tip: start playing something in Spotify (phone/desktop) and
+                  the player will show what is currently playing.
                 </p>
               </>
             ) : (
               <>
                 <p className="text-sm text-gray-300">
-                  Zaloguj się, żeby zobaczyć player, statystyki i swój profil
-                  recenzji.
+                  Sign in to see the player, stats and your review profile.
                 </p>
 
                 <div className="grid gap-3">
                   <StatCard
                     title="Explore"
                     value="Spotify Search"
-                    hint="utwory • albumy • artyści"
+                    hint="tracks • albums • artists"
                   />
                   <StatCard
                     title="Reviews"
-                    value="1–5 ⭐"
-                    hint="pisz recenzje i oceniaj"
+                    value="1-5"
+                    hint="write reviews and rate music"
                   />
                 </div>
               </>
@@ -163,68 +161,46 @@ export default async function Page() {
           </div>
         </section>
 
-        {/* STATS */}
         <section className="mt-10 grid gap-4 sm:grid-cols-3">
           <StatCard
-            title="Szybkość"
+            title="Speed"
             value="Instant search"
-            hint="wyniki od razu w Explore"
+            hint="results appear immediately in Explore"
           />
           <StatCard
-            title="Twoja historia"
-            value="Profil recenzji"
-            hint="zapisuj ulubione albumy"
+            title="Your history"
+            value="Review profile"
+            hint="save your favorite albums"
           />
           <StatCard
-            title="Statystyki"
+            title="Stats"
             value="Top Artists/Tracks"
-            hint="różne zakresy czasu"
+            hint="multiple time ranges"
           />
         </section>
 
-        {/* FEATURES */}
         <section className="mt-10">
-          <h2 className="text-xl font-semibold text-white">
-            Co tu fajnego zrobimy
-          </h2>
+          <h2 className="text-xl font-semibold text-white">What you can do</h2>
           <p className="mt-2 text-sm text-gray-400 max-w-2xl">
-            Strona główna ma wyglądać jak nowoczesny produkt: jasny przekaz +
-            konkretne moduły, a po zalogowaniu — szybkie wejścia do
-            najważniejszych sekcji.
+            A modern landing page with a clear message and useful modules, plus
+            quick entry points to the most important sections after signing in.
           </p>
 
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             <FeatureCard
-              title="Karty wyników jak w Spotify"
-              desc="Siatka coverów, hover, płynne przejścia i sekcje (Explore)."
+              title="Spotify-like result cards"
+              desc="Cover grid, hover effects, smooth transitions and sections (Explore)."
             />
             <FeatureCard
-              title="Recenzje i community"
-              desc="Oceny, komentarze, polubienia i feed aktywności."
+              title="Reviews and community"
+              desc="Ratings, comments, likes and an activity feed."
             />
             <FeatureCard
               title="Listening stats"
-              desc="4 tygodnie / 6 miesięcy / all time — i ładne wizualizacje."
+              desc="4 weeks / 6 months / all time, with clean visualizations."
             />
           </div>
         </section>
-
-        <footer className="mt-14 border-t border-white/10 pt-8 text-sm text-gray-500">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p>© {new Date().getFullYear()} SoundVault</p>
-            <div className="flex gap-4">
-              <Link className="hover:text-gray-300 transition" href="/explore">
-                Explore
-              </Link>
-              <Link className="hover:text-gray-300 transition" href="/stats">
-                Stats
-              </Link>
-              <Link className="hover:text-gray-300 transition" href="/profile">
-                Profile
-              </Link>
-            </div>
-          </div>
-        </footer>
       </div>
     </main>
   );
