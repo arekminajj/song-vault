@@ -154,7 +154,7 @@ export default async function Page() {
                   />
                   <StatCard
                     title="Reviews"
-                    value="1–5"
+                    value="1-5"
                     hint="write reviews and rate music"
                   />
                 </div>
