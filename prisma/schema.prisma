@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client"
   output   = "../src/app/generated/prisma"
@@ -9,11 +8,27 @@ datasource db {
 }
 
 model Review {
-  id    Int     @id @default(autoincrement())
-  userId String
-  mediaId String
-  content  String?
-  starsNum Int //0 to 5
+  id        Int      @id @default(autoincrement())
+  userId    String
+  mediaId   String
+  content   String?
+  starsNum  Int // 0 to 5
   createdAt DateTime
 }
-  
+
+model Comment {
+  id                    Int      @id @default(autoincrement())
+  userId                String
+  userName              String
+  userProfilePictureUrl String?
+  mediaId               String
+  content               String
+  createdAt             DateTime
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  mediaId   String
+  createdAt DateTime
+}
