@@ -60,7 +60,8 @@ export default function SearchBar({ initialQuery }: { initialQuery: string }) {
       </div>
 
       <p className="mt-2 text-xs text-white/40 pl-1">
-        Tip: Enter to search • Try: “Daft Punk”, “Kanye”, “Random Access Memories”
+        Tip: Enter to search • Try: “Daft Punk”, “Kanye”, “Random Access
+        Memories”
       </p>
     </form>
   );
