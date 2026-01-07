@@ -15,6 +15,13 @@ export async function getReviewById(id: number) {
   });
 }
 
+export async function getUserReviewForMedia(userId: string, mediaId: string) {
+  return await prisma.review.findFirst({
+    where: { userId: userId, mediaId: mediaId },
+    orderBy: { createdAt: "desc" },
+  });
+}
+
 export async function createReview(rawData: CreateReviewInput) {
   const validatedData = CreateReviewSchema.parse(rawData);
 

@@ -22,7 +22,8 @@ export default function WebPlayer({ session }: { session: Session }) {
     const fetchStatus = async () => {
       const data = await getUserPlaybackState(token!);
       setPlaybackState(data);
-      setIsPlaying(data.is_playing ?? false);
+      data.is_playing = data.is_playing ?? false;
+      setIsPlaying(data.is_playing);
     };
 
     fetchStatus();

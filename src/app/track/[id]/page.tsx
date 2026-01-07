@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import { getTrack } from "@/lib/spotify/spotify";
-import { ReviewForm } from "@/components/ReviewForm";
+import { getUserReviewForMedia } from "@/repositories/review.repository";
+import ReviewCard from "@/components/ReviewCard";
+import ReviewForm from "@/components/ReviewForm";
 
 interface Props {
   params: { id: string };
@@ -13,6 +15,8 @@ export default async function TrackPage({ params }: Props) {
 
   const { id } = await params;
   const track = await getTrack(id);
+
+  const review = await getUserReviewForMedia(session.user.id!, track.id);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
@@ -28,7 +32,7 @@ export default async function TrackPage({ params }: Props) {
         </div>
       </div>
 
-      <ReviewForm mediaId={id} />
+      {review ? <ReviewCard review={review} /> : <ReviewForm mediaId={id} />}
     </div>
   );
 }
