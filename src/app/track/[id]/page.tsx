@@ -32,7 +32,7 @@ export default async function TrackPage({ params }: Props) {
         </div>
       </div>
 
-      {review ? (<ReviewCard review={review} />) : (<ReviewForm mediaId={id} />)} 
+      {review ? <ReviewCard review={review} /> : <ReviewForm mediaId={id} />}
     </div>
   );
 }
