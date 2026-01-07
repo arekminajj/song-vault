@@ -270,7 +270,9 @@ export default async function ProfilePage() {
                 </div>
 
                 <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-5">
-                  <p className="text-sm font-semibold text-white">Liked items</p>
+                  <p className="text-sm font-semibold text-white">
+                    Liked items
+                  </p>
                   <p className="mt-1 text-xs text-gray-400">
                     Quick access to your saved tracks/albums.
                   </p>

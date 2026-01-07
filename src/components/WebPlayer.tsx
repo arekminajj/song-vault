@@ -12,7 +12,9 @@ import {
 import { PlaybackState, Track, Episode } from "@spotify/web-api-ts-sdk";
 
 export default function WebPlayer({ session }: { session: Session }) {
-  const [playbackState, setPlaybackState] = useState<PlaybackState | null>(null);
+  const [playbackState, setPlaybackState] = useState<PlaybackState | null>(
+    null,
+  );
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const token = session.accessToken;
 
@@ -46,8 +48,8 @@ export default function WebPlayer({ session }: { session: Session }) {
   const imageUrl = !item
     ? null
     : isTrack
-      ? (item as Track).album.images?.[0]?.url ?? null
-      : (item as Episode).images?.[0]?.url ?? null;
+      ? ((item as Track).album.images?.[0]?.url ?? null)
+      : ((item as Episode).images?.[0]?.url ?? null);
 
   return (
     <div className="w-full rounded-3xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
@@ -93,11 +95,22 @@ export default function WebPlayer({ session }: { session: Session }) {
             aria-label="Play / Pause"
           >
             {isPlaying ? (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
               </svg>
             ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="ml-0.5">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="ml-0.5"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             )}
