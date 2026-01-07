@@ -74,7 +74,7 @@ export default async function Page() {
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
                 <Icon name="star" className="h-4 w-4 text-gray-300" />
-                Ratings 1–5
+                Ratings 1-5
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
                 <Icon name="insights" className="h-4 w-4 text-gray-300" />

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { StarRating } from "./StarRating";
 
-export function ReviewForm({ mediaId }: { mediaId: string }) {
+export default function ReviewForm({ mediaId }: { mediaId: string }) {
   const router = useRouter();
   const [content, setContent] = useState("");
   const [starsNum, setStarsNum] = useState(3);
