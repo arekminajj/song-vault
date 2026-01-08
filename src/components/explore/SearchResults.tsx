@@ -47,6 +47,7 @@ export default function SearchResults({
                 className="group cursor-pointer rounded-2xl border border-white/10 bg-white/5 p-3 transition
                            hover:border-[#1DB954]/30 hover:bg-white/10 hover:-translate-y-0.5"
               >
+                <a href={type === "track" ? `/track/${item.id}` : ''}>
                 <div className="relative aspect-square overflow-hidden rounded-xl">
                   <img
                     src={img}
@@ -79,6 +80,7 @@ export default function SearchResults({
                     </p>
                   )}
                 </div>
+                </a>
               </div>
             );
           })
