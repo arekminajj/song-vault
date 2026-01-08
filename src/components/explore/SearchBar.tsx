@@ -25,7 +25,6 @@ export default function SearchBar({ initialQuery }: { initialQuery: string }) {
   return (
     <form onSubmit={handleSubmit} className="mx-auto w-full max-w-3xl">
       <div className="relative">
-        {/* icon */}
         <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/50">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path d="M10 18a8 8 0 1 1 5.293-14.01A8 8 0 0 1 10 18Zm0-14a6 6 0 1 0 .001 12.001A6 6 0 0 0 10 4Zm9.707 16.293-4.2-4.2 1.414-1.414 4.2 4.2-1.414 1.414Z" />
@@ -42,14 +41,12 @@ export default function SearchBar({ initialQuery }: { initialQuery: string }) {
           autoFocus
         />
 
-        {/* loading */}
         {isPending && (
           <div className="absolute right-24 top-1/2 -translate-y-1/2">
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/70 border-t-transparent" />
           </div>
         )}
 
-        {/* button (desktop) */}
         <button
           type="submit"
           className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold

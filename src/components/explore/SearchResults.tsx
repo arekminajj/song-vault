@@ -55,12 +55,10 @@ export default function SearchResults({
                     loading="lazy"
                   />
 
-                  {/* type badge */}
                   <div className="absolute left-2 top-2 rounded-full border border-white/10 bg-black/50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/80 backdrop-blur">
                     {type}
                   </div>
 
-                  {/* subtle bottom gradient */}
                   <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/55 to-transparent opacity-80" />
                 </div>
 
