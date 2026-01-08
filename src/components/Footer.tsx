@@ -47,7 +47,6 @@ export default function Footer() {
             <p className="text-xs uppercase tracking-widest text-gray-500">
               About
             </p>
-    
           </div>
         </div>
 
