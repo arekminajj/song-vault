@@ -18,9 +18,10 @@ export default async function EditReviewPage({ params }: Props) {
   const review: Review | null = await getReviewById(Number(reviewId));
 
   if (!review) {
-    return <div className="p-8 text-center text-gray-400">Review does not exist</div>;
+    return (
+      <div className="p-8 text-center text-gray-400">Review does not exist</div>
+    );
   }
 
-  return <UpdateReviewForm review={review} />
-
+  return <UpdateReviewForm review={review} />;
 }
