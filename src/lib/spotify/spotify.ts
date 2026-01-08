@@ -1,4 +1,4 @@
-import { getSpotifyClient, getUserSpotifyClient } from "./client";
+import { getSpotifyClient } from "./appClient";
 import { rankSearchResults } from "@/utils/searchResultRanking";
 
 import { Artist, Track, SimplifiedAlbum } from "@spotify/web-api-ts-sdk";
@@ -67,7 +67,7 @@ export async function searchAll(
   return rankSearchResults(items, query);
 }
 
-export async function getTract(id: string) {
+export async function getTrack(id: string) {
   return await getSpotifyClient().tracks.get(id);
 }
 
@@ -79,19 +79,14 @@ export async function getArtist(id: string) {
   return await getSpotifyClient().artists.get(id);
 }
 
-export async function getUserListeningStats(
-  token: string,
-  timestamp: "short_term" | "medium_term" | "long_term",
-) {
-  const sdk = getUserSpotifyClient(token);
+export async function getFeaturedPlaylists() {
+  const client = getSpotifyClient();
 
-  const [tracks, artists] = await Promise.all([
-    sdk.currentUser.topItems("tracks", timestamp, 10),
-    sdk.currentUser.topItems("artists", timestamp, 10),
-  ]);
+  return await client.browse.getFeaturedPlaylists();
+}
 
-  return {
-    tracks: tracks.items,
-    artists: artists.items,
-  };
+export async function getNewReleases() {
+  const client = getSpotifyClient();
+
+  return await client.browse.getNewReleases();
 }

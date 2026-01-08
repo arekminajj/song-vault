@@ -50,7 +50,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       clientId: process.env.SPOTIFY_CLIENT_ID!,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
       authorization:
-        "https://accounts.spotify.com/authorize?scope=user-read-email,user-read-private,user-top-read",
+        "https://accounts.spotify.com/authorize?scope=user-read-email,user-read-private,user-top-read,user-read-playback-state,user-modify-playback-state",
       profile(profile) {
         return {
           id: profile.id,
@@ -97,7 +97,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
               Authorization: `Basic ${Buffer.from(
-                `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`,
+                `${process.env.AUTH_SPOTIFY_ID}:${process.env.AUTH_SPOTIFY_SECRET}`,
               ).toString("base64")}`,
             },
             body: new URLSearchParams({
