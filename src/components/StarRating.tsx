@@ -12,24 +12,44 @@ export function StarRating({ value, onChange }: StarRatingProps) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <button
-            key={star}
-            type="button"
-            className="focus:outline-none transition-transform hover:scale-110"
-            onClick={() => onChange(star)}
-            onMouseEnter={() => setHover(star)}
-            onMouseLeave={() => setHover(null)}
-          >
-            <StarIcon
-              filled={star <= (hover ?? value)}
-              className={
-                star <= (hover ?? value) ? "text-yellow-400" : "text-gray-600"
-              }
-            />
-          </button>
-        ))}
+        {[1, 2, 3, 4, 5].map((star) => {
+          const active = star <= (hover ?? value);
+
+          return (
+            <button
+              key={star}
+              type="button"
+              aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
+              onClick={() => onChange(star)}
+              onMouseEnter={() => setHover(star)}
+              onMouseLeave={() => setHover(null)}
+              className="
+                cursor-pointer
+                rounded
+                transition
+                hover:scale-110
+                active:scale-95
+                focus:outline-none
+                focus:ring-2
+                focus:ring-white/20
+              "
+            >
+              <StarIcon
+                filled={active}
+                className={
+                  active
+                    ? "text-yellow-400 drop-shadow-[0_0_6px_rgba(250,204,21,0.35)]"
+                    : "text-white/20 hover:text-white/40"
+                }
+              />
+            </button>
+          );
+        })}
       </div>
+
+      <p className="text-[11px] text-gray-400">
+        {hover ? `Rating: ${hover}/5` : `Selected: ${value}/5`}
+      </p>
     </div>
   );
 }
@@ -48,7 +68,7 @@ function StarIcon({
       strokeWidth="2"
       stroke="currentColor"
       fill={filled ? "currentColor" : "none"}
-      className={`w-8 h-8 ${className}`}
+      className={`h-8 w-8 transition-colors ${className}`}
     >
       <path
         strokeLinecap="round"
