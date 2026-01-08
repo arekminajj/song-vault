@@ -16,9 +16,6 @@ export default async function StatsPage({
       | "medium_term"
       | "long_term") || "medium_term";
 
-  /* =======================
-     NOT LOGGED IN
-  ======================== */
   if (!session) {
     return (
       <main className="relative min-h-[calc(100vh-56px)] bg-gray-950 text-white overflow-hidden">
@@ -47,9 +44,6 @@ export default async function StatsPage({
     );
   }
 
-  /* =======================
-     LOGGED IN
-  ======================== */
   const { tracks, artists } = await getUserListeningStats(
     session.accessToken!,
     range,
@@ -65,7 +59,6 @@ export default async function StatsPage({
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">
-        {/* Header */}
         <header className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
           <div>
             <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">
@@ -79,7 +72,6 @@ export default async function StatsPage({
           <RangeToggle currentRange={range} />
         </header>
 
-        {/* Top track */}
         {topTrack && (
           <section className="mb-16 rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-10 backdrop-blur relative overflow-hidden">
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 relative z-10">
@@ -111,9 +103,7 @@ export default async function StatsPage({
           </section>
         )}
 
-        {/* Main grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Tracks */}
           <section className="lg:col-span-5">
             <h3 className="text-xl font-semibold mb-6">Heavy rotation</h3>
 
@@ -147,7 +137,6 @@ export default async function StatsPage({
             </div>
           </section>
 
-          {/* Artists */}
           <section className="lg:col-span-7">
             <h3 className="text-xl font-semibold mb-6">Top artists</h3>
 

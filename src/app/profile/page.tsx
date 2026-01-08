@@ -106,7 +106,6 @@ export default async function ProfilePage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-14">
-        {/* Header */}
         <section className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex items-center gap-4">
             <div className="relative">
@@ -133,11 +132,9 @@ export default async function ProfilePage() {
             </div>
           </div>
 
-          {/* Intentionally empty – actions live in the top navbar */}
           <div className="hidden lg:block" />
         </section>
 
-        {/* Quick overview */}
         <section className="mt-8">
           <div className="flex items-end justify-between gap-3">
             <div>
@@ -166,7 +163,6 @@ export default async function ProfilePage() {
             />
           </div>
 
-          {/* Secondary chips */}
           <div className="mt-4 flex flex-wrap gap-2">
             <Chip label="Type" value={user?.type ?? null} />
             <Chip
@@ -192,9 +188,7 @@ export default async function ProfilePage() {
           </div>
         </section>
 
-        {/* Main grid */}
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] items-start">
-          {/* Left: Details */}
           <div className="space-y-6">
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur">
               <h2 className="text-lg font-semibold">Account details</h2>
@@ -243,7 +237,6 @@ export default async function ProfilePage() {
               </div>
             </div>
 
-            {/* Recent activity (placeholder) */}
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur">
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -264,7 +257,7 @@ export default async function ProfilePage() {
                     Latest reviews
                   </p>
                   <p className="mt-1 text-xs text-gray-400">
-                    Show the last 3–5 reviews you posted.
+                    Show the last 3-5 reviews you posted.
                   </p>
                   <div className="mt-4 h-20 rounded-2xl border border-dashed border-white/10 bg-white/[0.01]" />
                 </div>
@@ -281,7 +274,6 @@ export default async function ProfilePage() {
               </div>
             </div>
 
-            {/* Optional: keep your 3 small cards if you still want them */}
             <div className="grid gap-4 sm:grid-cols-3">
               <InfoCard
                 title="Next step"
@@ -301,7 +293,6 @@ export default async function ProfilePage() {
             </div>
           </div>
 
-          {/* Right: Player */}
           <div className="space-y-4">
             <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
               <div className="flex items-start justify-between gap-3">
