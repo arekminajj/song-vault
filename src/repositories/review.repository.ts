@@ -3,6 +3,8 @@ import prisma from "@/lib/prisma";
 import {
   CreateReviewSchema,
   CreateReviewInput,
+  UpdateReviewSchema,
+  UpdateReviewInput,
 } from "../validation/review.schema";
 
 export async function getAllReviews() {
@@ -32,6 +34,23 @@ export async function createReview(rawData: CreateReviewInput) {
       content: validatedData.content,
       starsNum: validatedData.starsNum,
       createdAt: new Date(),
+    },
+  });
+}
+
+export async function updateReview(
+  reviewId: number,
+  rawData: UpdateReviewInput
+) {
+  const validatedData = UpdateReviewSchema.parse(rawData);
+
+  return await prisma.review.update({
+    where: {
+      id: reviewId,
+    },
+    data: {
+      starsNum: validatedData.starsNum,
+      content: validatedData.content,
     },
   });
 }

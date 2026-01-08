@@ -8,3 +8,10 @@ export const CreateReviewSchema = z.object({
 });
 
 export type CreateReviewInput = z.infer<typeof CreateReviewSchema>;
+
+export const UpdateReviewSchema = z.object({
+  content: z.string().max(1000, "Review is too long").nullable().optional(),
+  starsNum: z.number().int().min(0).max(5, "Rating must be between 0 and 5"),
+});
+
+export type UpdateReviewInput = z.infer<typeof UpdateReviewSchema>;
