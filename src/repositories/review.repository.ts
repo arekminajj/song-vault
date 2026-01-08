@@ -40,7 +40,7 @@ export async function createReview(rawData: CreateReviewInput) {
 
 export async function updateReview(
   reviewId: number,
-  rawData: UpdateReviewInput
+  rawData: UpdateReviewInput,
 ) {
   const validatedData = UpdateReviewSchema.parse(rawData);
 

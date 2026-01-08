@@ -5,7 +5,7 @@ import { getReviewById, updateReview } from "@/repositories/review.repository";
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { id } = await params;
   const body: UpdateReviewDto = await request.json();
@@ -20,7 +20,7 @@ export async function PUT(
   if (session.user.id !== review?.userId)
     return NextResponse.json(
       { error: "User is unathorized to edit this review" },
-      { status: 403 }
+      { status: 403 },
     );
 
   const updateResponse = await updateReview(reviewId, body);
