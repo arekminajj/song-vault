@@ -20,10 +20,14 @@ export default function WebPlayer({ session }: { session: Session }) {
 
   useEffect(() => {
     const fetchStatus = async () => {
-      const data = await getUserPlaybackState(token!);
-      setPlaybackState(data);
-      data.is_playing = data.is_playing ?? false;
-      setIsPlaying(data.is_playing);
+      try {
+        const data = await getUserPlaybackState(token!);
+        setPlaybackState(data);
+        setIsPlaying(data?.is_playing ?? false);
+      } catch {
+        setPlaybackState(null);
+        setIsPlaying(false);
+      }
     };
 
     fetchStatus();
@@ -31,73 +35,98 @@ export default function WebPlayer({ session }: { session: Session }) {
     return () => clearInterval(interval);
   }, [token]);
 
-  if (!playbackState || !playbackState.item) return <div>No media playing</div>;
+  const item = playbackState?.item ?? null;
+  const isTrack = item?.type === "track";
 
-  const isTrack = playbackState.item.type === "track";
-  const item = playbackState.item;
-  const subText = isTrack
-    ? (item as Track).artists.map((a) => a.name).join(", ")
-    : (item as Episode).show.name;
+  const title = item?.name ?? "Nothing is playing";
+  const subText = !item
+    ? "Start playback in Spotify (desktop/phone)"
+    : isTrack
+      ? (item as Track).artists.map((a) => a.name).join(", ")
+      : (item as Episode).show.name;
+
+  const imageUrl = !item
+    ? null
+    : isTrack
+      ? ((item as Track).album.images?.[0]?.url ?? null)
+      : ((item as Episode).images?.[0]?.url ?? null);
 
   return (
-    <div className="flex items-center justify-between w-full max-w-md gap-4 p-3 bg-black border border-zinc-800 text-white rounded-2xl shadow-xl">
-      <div className="flex items-center gap-3 min-w-0 flex-1">
-        <img
-          src={(item as Track).album.images[0].url}
-          alt={item.name}
-          className="w-12 h-12 rounded-md object-cover flex-shrink-0 shadow-md"
-        />
-        <div className="flex flex-col min-w-0">
-          <span className="font-semibold text-sm truncate">{item.name}</span>
-          <span className="text-[11px] text-zinc-400 truncate uppercase tracking-wider font-medium">
-            {subText}
-          </span>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-4 pr-2">
-        <button
-          onClick={() => skipToPreviousTrack(token!)}
-          className="text-zinc-400 hover:text-white transition-colors"
-          aria-label="Previous"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z" />
-          </svg>
-        </button>
-
-        <button
-          onClick={() =>
-            isPlaying ? pausePlayback(token!) : startResumePlayback(token!)
-          }
-          className="group flex items-center justify-center w-10 h-10 bg-white text-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)]"
-        >
-          {isPlaying ? (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-            </svg>
+    <div className="w-full rounded-3xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3 min-w-0 flex-1">
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={title}
+              className="h-12 w-12 rounded-xl object-cover flex-shrink-0 shadow-md"
+            />
           ) : (
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="ml-0.5"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
+            <div className="h-12 w-12 rounded-xl bg-white/10 flex-shrink-0 grid place-items-center">
+              <span className="text-xs text-gray-300">♪</span>
+            </div>
           )}
-        </button>
 
-        <button
-          onClick={() => skipToNextTrack(token!)}
-          className="text-zinc-400 hover:text-white transition-colors"
-          aria-label="Next"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z" />
-          </svg>
-        </button>
+          <div className="min-w-0">
+            <p className="text-xs text-gray-400">Now playing</p>
+            <p className="font-semibold text-sm truncate">{title}</p>
+            <p className="text-[11px] text-gray-400 truncate">{subText}</p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            disabled={!item}
+            onClick={() => skipToPreviousTrack(token!)}
+            className="h-9 w-9 grid place-items-center rounded-full border border-white/10 bg-white/[0.03] text-gray-200 hover:bg-white/[0.06] disabled:opacity-40 disabled:hover:bg-white/[0.03] transition"
+            aria-label="Previous"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z" />
+            </svg>
+          </button>
+
+          <button
+            disabled={!item}
+            onClick={() =>
+              isPlaying ? pausePlayback(token!) : startResumePlayback(token!)
+            }
+            className="h-9 w-9 grid place-items-center rounded-full bg-white text-black hover:opacity-95 disabled:opacity-40 transition"
+            aria-label="Play / Pause"
+          >
+            {isPlaying ? (
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            ) : (
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="ml-0.5"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            )}
+          </button>
+
+          <button
+            disabled={!item}
+            onClick={() => skipToNextTrack(token!)}
+            className="h-9 w-9 grid place-items-center rounded-full border border-white/10 bg-white/[0.03] text-gray-200 hover:bg-white/[0.06] disabled:opacity-40 disabled:hover:bg-white/[0.03] transition"
+            aria-label="Next"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
