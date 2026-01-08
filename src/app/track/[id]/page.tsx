@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { getTrack } from "@/lib/spotify/spotify";
 import { getUserReviewForMedia } from "@/repositories/review.repository";
+import { msToMinSec } from "@/utils/timeParser";
 import ReviewCard from "@/components/ReviewCard";
 import ReviewForm from "@/components/ReviewForm";
 import SignIn from "@/components/Signin";
@@ -9,23 +10,14 @@ interface Props {
   params: { id: string };
 }
 
-function msToMinSec(ms: number) {
-  const totalSec = Math.floor(ms / 1000);
-  const m = Math.floor(totalSec / 60);
-  const s = totalSec % 60;
-  return `${m}:${String(s).padStart(2, "0")}`;
-}
-
 export default async function TrackPage({ params }: Props) {
   const session = await auth();
   const { id } = await params;
   const track = await getTrack(id);
 
-  // Guest view (spójny “glass”)
   if (!session) {
     return (
       <main className="relative min-h-[calc(100vh-56px)] bg-gray-950 text-white overflow-hidden">
-        {/* background glow (jak homepage) */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-24 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-green-500/15 blur-3xl" />
           <div className="absolute top-48 left-1/3 h-[260px] w-[520px] rounded-full bg-indigo-500/10 blur-3xl" />
@@ -55,7 +47,6 @@ export default async function TrackPage({ params }: Props) {
               </p>
 
               <div className="mt-3">
-                {/* SignIn to server action form; stylujemy przyciskiem wewnątrz */}
                 <div className="[&>form>button]:cursor-pointer [&>form>button]:rounded-full [&>form>button]:bg-white [&>form>button]:px-5 [&>form>button]:py-2.5 [&>form>button]:text-sm [&>form>button]:font-semibold [&>form>button]:text-black [&>form>button]:transition [&>form>button]:hover:opacity-95 [&>form>button]:active:scale-[0.98]">
                   <SignIn />
                 </div>
@@ -83,7 +74,6 @@ export default async function TrackPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
-      {/* HERO */}
       <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4 min-w-0">
@@ -150,7 +140,6 @@ export default async function TrackPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Popularity bar */}
         {typeof popularity === "number" ? (
           <div className="mt-6">
             <div className="flex items-center justify-between">
@@ -166,7 +155,6 @@ export default async function TrackPage({ params }: Props) {
           </div>
         ) : null}
 
-        {/* Optional inline audio player (bardziej “app-like” niż link) */}
         {previewUrl ? (
           <div className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
             <p className="text-xs text-gray-400">Preview player</p>
@@ -177,7 +165,6 @@ export default async function TrackPage({ params }: Props) {
         ) : null}
       </section>
 
-      {/* REVIEW */}
       <div className="mt-6">
         {review ? <ReviewCard review={review} /> : <ReviewForm mediaId={id} />}
       </div>

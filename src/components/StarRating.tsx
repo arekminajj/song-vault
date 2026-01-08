@@ -47,7 +47,6 @@ export function StarRating({ value, onChange }: StarRatingProps) {
         })}
       </div>
 
-      {/* opcjonalny hint tekstowy */}
       <p className="text-[11px] text-gray-400">
         {hover ? `Rating: ${hover}/5` : `Selected: ${value}/5`}
       </p>
