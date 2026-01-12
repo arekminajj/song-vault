@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { createLike } from "@/repositories/like.repository"
+import { createLike } from "@/repositories/like.repository";
 
 export async function POST(req: Request) {
   const session = await auth();
