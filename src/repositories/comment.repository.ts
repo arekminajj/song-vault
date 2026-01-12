@@ -3,6 +3,8 @@ import prisma from "@/lib/prisma";
 import {
   CreateCommentSchema,
   CreateCommentInput,
+  UpdateCommentSchema,
+  UpdateCommentInput
 } from "../validation/comment.schema";
 
 export async function getComments(mediaId: string, limit = 20, offset = 0) {
@@ -11,6 +13,12 @@ export async function getComments(mediaId: string, limit = 20, offset = 0) {
     orderBy: { createdAt: "desc" },
     skip: offset,
     take: limit,
+  });
+}
+
+export async function getCommentById(id: number) {
+  return prisma.comment.findUnique({
+    where: { id },
   });
 }
 
@@ -27,4 +35,26 @@ export async function createComment(rawData: CreateCommentInput) {
       createdAt: new Date(),
     },
   });
+}
+
+export async function updateComment(
+  commentId: number,
+  rawData: UpdateCommentInput,
+) {
+  const validatedData = UpdateCommentSchema.parse(rawData);
+
+  return await prisma.comment.update({
+    where: {
+      id: commentId,
+    },
+    data: {
+      content: validatedData.content
+    },
+  });
+}
+
+export async function deleteComment(id: number) {
+  return await prisma.comment.delete({
+    where : {id}
+  })
 }

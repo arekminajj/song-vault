@@ -3,23 +3,291 @@
   "info": {
     "title": "API Documentation",
     "version": "1.0.0",
-    "description": "This is the OpenAPI specification for your project."
+    "description": "Songvault api documentation"
+  },
+  "paths": {
+    "/comment": {
+      "get": {
+        "operationId": "get-comment",
+        "summary": "Get comments",
+        "description": "Fetches comments",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mediaId",
+            "schema": {
+              "type": "string",
+              "description": "Id of the media"
+            },
+            "required": true,
+            "description": "Id of the media",
+            "example": "123"
+          },
+          {
+            "in": "path",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "description": "Reponse array limit"
+            },
+            "required": true,
+            "description": "Reponse array limit",
+            "example": 1
+          },
+          {
+            "in": "path",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "description": "Response array offset"
+            },
+            "required": true,
+            "description": "Response array offset",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-comment",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/comment/{id}": {
+      "get": {
+        "operationId": "get-comment-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-comment-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-comment-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/like": {
+      "post": {
+        "operationId": "post-like",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Like"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/like/{id}": {
+      "delete": {
+        "operationId": "delete-like-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Like"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/review": {
+      "get": {
+        "operationId": "get-review",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-review",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/review/{id}": {
+      "get": {
+        "operationId": "get-review-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-review-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-review-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api",
-      "description": "Local development server"
+      "url": "",
+      "description": "API server"
     }
   ],
   "components": {
-    "securitySchemes": {
-      "BearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+    "schemas": {
+      "GetCommentsParams": {
+        "type": "object",
+        "properties": {
+          "mediaId": {
+            "type": "string",
+            "description": "Id of the media"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Reponse array limit"
+          },
+          "offset": {
+            "type": "number",
+            "description": "Response array offset"
+          }
+        },
+        "required": [
+          "mediaId",
+          "limit",
+          "offset"
+        ]
       }
     },
-    "schemas": {},
     "responses": {
       "400": {
         "description": "Bad Request",
@@ -138,84 +406,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    }
-  },
-  "paths": {
-    "/comment": {
-      "post": {
-        "operationId": "post-comment",
-        "summary": "",
-        "description": "",
-        "tags": [
-          "Comment"
-        ],
-        "parameters": [],
-        "responses": {
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "500": {
-            "$ref": "#/components/responses/500"
-          }
-        }
-      }
-    },
-    "/like": {
-      "post": {
-        "operationId": "post-like",
-        "summary": "",
-        "description": "",
-        "tags": [
-          "Like"
-        ],
-        "parameters": [],
-        "responses": {
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "500": {
-            "$ref": "#/components/responses/500"
-          }
-        }
-      }
-    },
-    "/review": {
-      "post": {
-        "operationId": "post-review",
-        "summary": "",
-        "description": "",
-        "tags": [
-          "Review"
-        ],
-        "parameters": [],
-        "responses": {
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "500": {
-            "$ref": "#/components/responses/500"
-          }
-        }
-      }
-    },
-    "/review/{id}": {
-      "put": {
-        "operationId": "put-review-{id}",
-        "summary": "",
-        "description": "",
-        "tags": [
-          "Review"
-        ],
-        "parameters": [],
-        "responses": {
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "500": {
-            "$ref": "#/components/responses/500"
           }
         }
       }

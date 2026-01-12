@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { createReview } from "@/repositories/review.repository";
+import { createReview, getAllReviews } from "@/repositories/review.repository";
+
+export async function GET() {
+  const reviews = await getAllReviews();
+  return NextResponse.json(reviews);
+}
 
 export async function POST(req: Request) {
   const session = await auth();

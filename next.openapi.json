@@ -3,22 +3,7 @@
   "info": {
     "title": "API Documentation",
     "version": "1.0.0",
-    "description": "This is the OpenAPI specification for your project."
-  },
-  "servers": [
-    {
-      "url": "http://localhost:3000/api",
-      "description": "Local development server"
-    }
-  ],
-  "components": {
-    "securitySchemes": {
-      "BearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
+    "description": "Songvault api documentation"
   },
   "defaultResponseSet": "common",
   "responseSets": {
