@@ -4,7 +4,7 @@ import {
   CreateCommentSchema,
   CreateCommentInput,
   UpdateCommentSchema,
-  UpdateCommentInput
+  UpdateCommentInput,
 } from "../validation/comment.schema";
 
 export async function getComments(mediaId: string, limit = 20, offset = 0) {
@@ -48,13 +48,13 @@ export async function updateComment(
       id: commentId,
     },
     data: {
-      content: validatedData.content
+      content: validatedData.content,
     },
   });
 }
 
 export async function deleteComment(id: number) {
   return await prisma.comment.delete({
-    where : {id}
-  })
+    where: { id },
+  });
 }

@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { createComment, getComments } from "@/repositories/comment.repository";
 
-import { z } from 'zod'
-
+import { z } from "zod";
 
 export const GetCommentsParams = z.object({
   mediaId: z.string().describe("Id of the media"),
@@ -25,10 +24,7 @@ export async function GET(req: Request) {
   const offset = Number(searchParams.get("offset")) || 0;
 
   if (!mediaId) {
-    return NextResponse.json(
-      { error: "mediaId is required" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "mediaId is required" }, { status: 400 });
   }
 
   const comments = await getComments(mediaId, limit, offset);

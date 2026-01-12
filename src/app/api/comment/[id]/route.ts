@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import {
   getCommentById,
   updateComment,
-  deleteComment
+  deleteComment,
 } from "@/repositories/comment.repository";
 import type { UpdateCommentInput } from "@/validation/comment.schema";
 
@@ -12,10 +12,12 @@ export async function GET(
   { params }: { params: { id: string } },
 ) {
   const id = Number(params.id);
-  if (isNaN(id)) return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
+  if (isNaN(id))
+    return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
 
   const comment = await getCommentById(id);
-  if (!comment) return NextResponse.json({ error: "Not Found" }, { status: 404 });
+  if (!comment)
+    return NextResponse.json({ error: "Not Found" }, { status: 404 });
 
   return NextResponse.json(comment);
 }
@@ -37,7 +39,7 @@ export async function PUT(
   if (comment.userId !== session.user.id)
     return NextResponse.json(
       { error: "User is unauthorized to edit this comment" },
-      { status: 403 }
+      { status: 403 },
     );
 
   const body: UpdateCommentInput = await request.json();
@@ -63,7 +65,7 @@ export async function DELETE(
   if (comment.userId !== session.user.id)
     return NextResponse.json(
       { error: "User is unauthorized to delete this comment" },
-      { status: 403 }
+      { status: 403 },
     );
 
   await deleteComment(id);

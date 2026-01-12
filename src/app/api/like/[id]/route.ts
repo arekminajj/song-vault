@@ -13,10 +13,7 @@ export async function DELETE(
   try {
     const likeId = Number(params.id);
     if (isNaN(likeId)) {
-      return NextResponse.json(
-        { error: "Invalid like ID" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid like ID" }, { status: 400 });
     }
 
     await deleteLike(likeId);
@@ -25,7 +22,7 @@ export async function DELETE(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete like" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
