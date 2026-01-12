@@ -1,0 +1,414 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0",
+    "description": "Songvault api documentation"
+  },
+  "paths": {
+    "/comment": {
+      "get": {
+        "operationId": "get-comment",
+        "summary": "Get comments",
+        "description": "Fetches comments",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mediaId",
+            "schema": {
+              "type": "string",
+              "description": "Id of the media"
+            },
+            "required": true,
+            "description": "Id of the media",
+            "example": "123"
+          },
+          {
+            "in": "path",
+            "name": "limit",
+            "schema": {
+              "type": "number",
+              "description": "Reponse array limit"
+            },
+            "required": true,
+            "description": "Reponse array limit",
+            "example": 1
+          },
+          {
+            "in": "path",
+            "name": "offset",
+            "schema": {
+              "type": "number",
+              "description": "Response array offset"
+            },
+            "required": true,
+            "description": "Response array offset",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-comment",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/comment/{id}": {
+      "get": {
+        "operationId": "get-comment-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-comment-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-comment-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Comment"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/like": {
+      "post": {
+        "operationId": "post-like",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Like"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/like/{id}": {
+      "delete": {
+        "operationId": "delete-like-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Like"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/review": {
+      "get": {
+        "operationId": "get-review",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-review",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/review/{id}": {
+      "get": {
+        "operationId": "get-review-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-review-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-review-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Review"
+        ],
+        "parameters": [],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "",
+      "description": "API server"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "GetCommentsParams": {
+        "type": "object",
+        "properties": {
+          "mediaId": {
+            "type": "string",
+            "description": "Id of the media"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Reponse array limit"
+          },
+          "offset": {
+            "type": "number",
+            "description": "Response array offset"
+          }
+        },
+        "required": [
+          "mediaId",
+          "limit",
+          "offset"
+        ]
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid request parameters"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "400"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Authentication required"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "401"
+                }
+              }
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Access denied"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "403"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Resource not found"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Resource already exists"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "409"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "An unexpected error occurred"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "500"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

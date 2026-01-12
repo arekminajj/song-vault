@@ -1,51 +1,51 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import type UpdateReviewDto from "@/types/dto/updateReviewDto";
 import {
-  getReviewById,
-  updateReview,
-  deleteReview,
-} from "@/repositories/review.repository";
+  getCommentById,
+  updateComment,
+  deleteComment,
+} from "@/repositories/comment.repository";
+import type { UpdateCommentInput } from "@/validation/comment.schema";
 
 export async function GET(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  const reviewId = Number(params.id);
-  if (isNaN(reviewId)) {
+  const id = Number(params.id);
+  if (isNaN(id))
     return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
-  }
 
-  const review = await getReviewById(reviewId);
-  if (!review)
+  const comment = await getCommentById(id);
+  if (!comment)
     return NextResponse.json({ error: "Not Found" }, { status: 404 });
 
-  return NextResponse.json(review);
+  return NextResponse.json(comment);
 }
 
 export async function PUT(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  const { id } = await params;
-  const body: UpdateReviewDto = await request.json();
-
   const session = await auth();
   if (!session?.user?.id)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const reviewId = Number(id);
+  const id = Number(params.id);
+  const comment = await getCommentById(id);
 
-  const review = await getReviewById(reviewId);
-  if (session.user.id !== review?.userId)
+  if (!comment)
+    return NextResponse.json({ error: "Not Found" }, { status: 404 });
+
+  if (comment.userId !== session.user.id)
     return NextResponse.json(
-      { error: "User is unathorized to edit this review" },
+      { error: "User is unauthorized to edit this comment" },
       { status: 403 },
     );
 
-  const updateResponse = await updateReview(reviewId, body);
+  const body: UpdateCommentInput = await request.json();
+  const updated = await updateComment(id, body);
 
-  return NextResponse.json(updateResponse);
+  return NextResponse.json(updated);
 }
 
 export async function DELETE(
@@ -56,18 +56,18 @@ export async function DELETE(
   if (!session?.user?.id)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const reviewId = Number(params.id);
-  const review = await getReviewById(reviewId);
+  const id = Number(params.id);
+  const comment = await getCommentById(id);
 
-  if (!review)
+  if (!comment)
     return NextResponse.json({ error: "Not Found" }, { status: 404 });
 
-  if (session.user.id !== review.userId)
+  if (comment.userId !== session.user.id)
     return NextResponse.json(
-      { error: "User is unauthorized to delete this review" },
+      { error: "User is unauthorized to delete this comment" },
       { status: 403 },
     );
 
-  await deleteReview(reviewId);
+  await deleteComment(id);
   return NextResponse.json({ success: true });
 }
