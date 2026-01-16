@@ -65,7 +65,9 @@ export default async function TrackPage({ params }: Props) {
   const albumName = track.album?.name ?? "Unknown album";
   const coverUrl = track.album?.images?.[0]?.url ?? "";
   const artists = track.artists.map((a) => a.name).join(", ");
-  const release = (track.album as SimplifiedAlbum)?.release_date as string | undefined; 
+  const release = (track.album as SimplifiedAlbum)?.release_date as
+    | string
+    | undefined;
   const duration = msToMinSec(track.duration_ms);
   const popularity = (track as Track)?.popularity as number | undefined;
   const explicit = (track as Track)?.explicit as boolean | undefined;
