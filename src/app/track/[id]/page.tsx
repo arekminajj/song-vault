@@ -6,6 +6,8 @@ import ReviewCard from "@/components/ReviewCard";
 import ReviewForm from "@/components/ReviewForm";
 import SignIn from "@/components/Signin";
 
+import { Track, SimplifiedAlbum } from "@spotify/web-api-ts-sdk";
+
 interface Props {
   params: { id: string };
 }
@@ -63,12 +65,12 @@ export default async function TrackPage({ params }: Props) {
   const albumName = track.album?.name ?? "Unknown album";
   const coverUrl = track.album?.images?.[0]?.url ?? "";
   const artists = track.artists.map((a) => a.name).join(", ");
-  const release = (track.album as any)?.release_date as string | undefined; // spotify sdk typing sometimes differs
+  const release = (track.album as SimplifiedAlbum)?.release_date as string | undefined; 
   const duration = msToMinSec(track.duration_ms);
-  const popularity = (track as any)?.popularity as number | undefined;
-  const explicit = (track as any)?.explicit as boolean | undefined;
-  const previewUrl = (track as any)?.preview_url as string | null | undefined;
-  const spotifyUrl = (track as any)?.external_urls?.spotify as
+  const popularity = (track as Track)?.popularity as number | undefined;
+  const explicit = (track as Track)?.explicit as boolean | undefined;
+  const previewUrl = (track as Track)?.preview_url as string | null | undefined;
+  const spotifyUrl = (track as Track)?.external_urls?.spotify as
     | string
     | undefined;
 
