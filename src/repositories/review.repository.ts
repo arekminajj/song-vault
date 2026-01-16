@@ -54,3 +54,9 @@ export async function updateReview(
     },
   });
 }
+
+export async function deleteReview(id: number) {
+  return await prisma.review.delete({
+    where: { id },
+  });
+}

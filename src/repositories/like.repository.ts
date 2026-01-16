@@ -18,3 +18,9 @@ export async function createLike(rawData: CreateLikeInput) {
     },
   });
 }
+
+export async function deleteLike(id: number) {
+  return await prisma.like.delete({
+    where: { id },
+  });
+}
