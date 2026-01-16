@@ -33,8 +33,12 @@ export default function UpdateReviewForm({ review }: Props) {
 
       router.refresh();
       alert("Review updated successfully!");
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert(err.message);
+      } else {
+        alert("An unexpected error occurred");
+      }
     } finally {
       setLoading(false);
     }

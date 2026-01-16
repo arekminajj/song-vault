@@ -1,11 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { createReview, getAllReviews } from "@/repositories/review.repository";
-
-export async function GET() {
-  const reviews = await getAllReviews();
-  return NextResponse.json(reviews);
-}
+import { createLike } from "@/repositories/like.repository";
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -14,7 +9,7 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const review = await createReview({
+    const review = await createLike({
       ...body,
       userId: session.user.id,
     });
