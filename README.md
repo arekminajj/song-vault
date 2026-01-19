@@ -15,9 +15,9 @@ AUTH_TRUST_HOST=true
 NEXTAUTH_SECRET=<auth-secret>
 ```
 
-- AUTH_SPOTIFY_ID and AUTH_SPOTIFY_SECRET can be obtained from [Spotify developer page](https://developer.spotify.com/)
+- `AUTH_SPOTIFY_ID` and AUTH_SPOTIFY_SECRET can be obtained from [Spotify developer page](https://developer.spotify.com/)
 
-- AUTH_URL is the URL of tunneled app
+- `AUTH_URL` is the URL of tunneled app
 
 - `NEXTAUTH_SECRET` is used for securing JWT tokens in authentication. You can generate a random secret using:
 
